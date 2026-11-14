@@ -14,6 +14,7 @@ Usage:
 """
 
 import argparse
+import json
 import os
 import sys
 
@@ -46,9 +47,14 @@ def main():
                              f"{N_EVALUATIONS})")
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--max-workers", type=int, default=None)
+    parser.add_argument("--tasks-file", default=None)
     args = parser.parse_args()
 
     cfg = resolve_config(args.benchmark)
+    task_ids = None
+    if args.tasks_file:
+        with open(args.tasks_file) as f:
+            task_ids = json.load(f)
     out = run_benchmark(
         cfg,
         pivots=PIVOTS,
@@ -58,6 +64,7 @@ def main():
         n_trials=N_TRIALS,
         cache_file=cfg.cache.replace(".json", f"_{LABEL}.json"),
         results_file=cfg.results.replace(".txt", f"_{LABEL}.txt"),
+        task_ids=task_ids,
     )
     report(cfg, **out)
 

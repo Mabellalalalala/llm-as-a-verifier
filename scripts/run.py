@@ -103,7 +103,7 @@ def main():
 
 def run_benchmark(cfg, pivots=None, n_evaluations=None, seed=None,
                   max_workers=None, n_trials=None, cache_file=None,
-                  results_file=None):
+                  results_file=None, task_ids=None):
     """Score one benchmark end to end and return the metrics.
 
     Every argument except `cfg` overrides the benchmark's own setting, so a
@@ -128,6 +128,11 @@ def run_benchmark(cfg, pivots=None, n_evaluations=None, seed=None,
     # ---- data ----
     print(f"Loading {cfg.name} ...")
     tasks, n_runs = LOADERS[cfg.loader](cfg.data, ROOT_DIR)
+    if task_ids is not None:
+        missing = sorted(set(task_ids) - set(tasks))
+        if missing:
+            raise ValueError(f"task IDs not found: {', '.join(missing)}")
+        tasks = {name: tasks[name] for name in task_ids}
     if n_trials:
         # First N trials per task (stable: the loader sorts by file name).
         tasks = {name: trials[:n_trials] for name, trials in tasks.items()}

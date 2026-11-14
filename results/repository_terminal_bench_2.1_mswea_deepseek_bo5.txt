@@ -1,0 +1,18 @@
+
+========================================================================
+TERMINAL-BENCH 2.1  (mini-swe-agent · deepseek-v4-flash, x5)
+  g20  criteria=['specification', 'output_match', 'error_signals']  K=2  pivots=1  seed=1
+  tasks=1  swing=1  N(trials)=5  comparisons/task=9.0
+========================================================================
+Method                               Score     Rate
+------------------------------------------------------------------------
+Pass@1                          0.60/1    60.0%
+LLM-as-a-Verifier                  1/1   100.0%
+Oracle (Bo5)                       1/1   100.0%
+------------------------------------------------------------------------
+Verifier tokens (36 verifier calls)
+  input                            1,703,712
+    cached input                   1,644,544  (96.5% hit rate)
+    uncached input                    59,168
+  output                             330,957
+    reasoning                        325,358

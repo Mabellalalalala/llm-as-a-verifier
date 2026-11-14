@@ -1,0 +1,39 @@
+{
+  "experiments": [
+    {
+      "experiment": "baseline_bo3",
+      "tasks": 1,
+      "trials": 3,
+      "pass_at_1": 0.667,
+      "verifier_score": 1.0,
+      "oracle": 1.0,
+      "api_calls": 24,
+      "input_tokens": 1059830,
+      "cached_input_tokens": 937216,
+      "output_tokens": 223952,
+      "reasoning_tokens": 219973,
+      "cache_hit_rate": 0.884,
+      "execution_time_seconds": null
+    },
+    {
+      "experiment": "modified_bo5",
+      "tasks": 1,
+      "trials": 5,
+      "pass_at_1": 0.6,
+      "verifier_score": 1.0,
+      "oracle": 1.0,
+      "api_calls": 48,
+      "input_tokens": 2241028,
+      "cached_input_tokens": 1948160,
+      "output_tokens": 521769,
+      "reasoning_tokens": 514222,
+      "cache_hit_rate": 0.869,
+      "execution_time_seconds": null
+    }
+  ],
+  "notes": [
+    "Single-task pilot experiment on cancel-async-tasks.",
+    "API cost is not calculated because DeepSeek account pricing was not supplied; token totals are reported.",
+    "Execution time was not captured in the successful user-terminal runs."
+  ]
+}
